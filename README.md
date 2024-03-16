@@ -4,7 +4,7 @@ Inspired by the Silly Sudoku Top Coder problem. The aim is not to re-invent back
 
 # BackTracking
 
-The algorithm for backtracking was the same one used in the TopCoder solution, [found here](https://www.topcoder.com/tc?module=Static&d1=match_editorials&d2=srm315). I adjusted the code to work in C++.
+The algorithm for backtracking was the same one used in the TopCoder solution, [found here](https://www.topcoder.com/tc?module=Static&d1=match_editorials&d2=srm315). I adjusted the code to work in C++ and work for multiple board sizes.
 
 
 
