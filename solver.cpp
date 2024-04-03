@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector> 
 #include <string>
+#include <cmath>
 
 using namespace std;
 
@@ -45,8 +46,9 @@ public:
 
             // Converts int to ASCII char
             char lastDigit = static_cast<char>(size);
-            for (char ch : row) 
-            {                                         // Converts ASCII char to int
+            for (int i = 0; i < row.length(); i++)
+            {
+                char ch = row[i];   // Converts ASCII char to int
                 if (ch >= '1' && ch <= lastDigit)     newRow.push_back(ch - '0'); 
                 else    newRow.push_back(0); // Push a 0 where there is a blank space
             }
