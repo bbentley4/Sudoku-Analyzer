@@ -11,6 +11,6 @@ Compile using the following command:
 `g++ -std=c++11 -stdlib=libc++ solver.cpp -o solver`
 
 # Generator 
-## generator.cpp
-I wanted to produce hundreds to thousands of sudoku boards to test timing so I found a board generator algorithm on [Geeks4Geeks](https://www.geeksforgeeks.org/program-sudoku-generator/)
+
+
 
