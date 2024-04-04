@@ -38,21 +38,61 @@ public:
         sq.resize(size, vector<int>(size, 0));
         ns = 0;
 
+        // Load board (w/ ints)
         for (int i = 0; i < size; i++) 
         {
             string row;
             cin >> row;
             vector<int> newRow;
 
-            // Converts int to ASCII char
-            char lastDigit = static_cast<char>(size);
             for (int i = 0; i < row.length(); i++)
             {
-                char ch = row[i];   // Converts ASCII char to int
-                if (ch >= '1' && ch <= lastDigit)     newRow.push_back(ch - '0'); 
-                else    newRow.push_back(0); // Push a 0 where there is a blank space
+                if (row[i] != '-')
+                {
+                    int num = atoi(&row[i]); 
+                    cout << "enter a " << num << endl;
+                    newRow.push_back(num);
+                }
+                else    
+                {
+                    cout << "enter a 0" << endl;
+                    newRow.push_back(0); // Push a 0 where there is a blank space
+                }
             }
-            board.push_back(newRow);
+            board[i] = newRow;
+        }        
+
+        // for (int i = 0; i < size; i++)
+        // {
+        //     for (int j = 0; j < size; i++)
+        //     {
+        //         cout << board[i][j] << " ";
+        //     }
+        //     cout << endl;
+        // }
+
+        // Load row, col, square values
+        for (int x = 0; x < size; x++)
+        {
+            for (int y = 0; y < size; y++)
+            {
+                int val = board[x][y];
+                //cout << "val: " << val << endl;
+                int boxsize = sqrt(size);
+                int square_index = (x/boxsize) * boxsize + (y/boxsize);
+
+                if (val != 0) // Not a blank space
+                {
+                    if (row[x][val] == 1 || col[y][val] == 1 || sq[square_index][val] == 1)    
+                    {
+                        ns = -1; // Conflict! Invalid board
+                    }
+                    // Count that digit as occuring in that row, column, square
+                    row[x][val] = 1;
+                    col[y][val] = 1;
+                    sq[square_index][val] = 1;
+                }
+            }
         }
     }
     
@@ -61,6 +101,11 @@ public:
     // Arguments: x, y are the row and column (respectively) being analyzed
     void countSolutions(int x, int y) 
     {
+        if (ns < 0)
+        {
+            ns = 0;
+            return;
+        }
         int val = board[x][y];
         // If we reached the end of the rows, we're done--we've found a solution.
         if (x == size)     ns++;
@@ -68,26 +113,10 @@ public:
         else if (y == size) countSolutions(x + 1, 0); 
         else
         {
-            int sqrtsize = sqrt(size);
-            int square_index = (x/sqrtsize) * sqrtsize + (y/sqrtsize);
+            int boxsize = sqrt(size);
+            int square_index = (x/boxsize) * boxsize + (y/boxsize);
 
-            if (val != 0) // Not a blank space
-            {
-                if (row[x][val] == 0 && col[y][val] == 0 && sq[square_index][val] == 0)
-                {
-                    // Count that digit as occuring in that row, column, square
-                    row[x][val] = 1;
-                    col[y][val] = 1;
-                    sq[square_index][val] = 1;
-                    // Call recursively to check the rest of this line, column, and square
-                    countSolutions(x, y + 1);
-                    // Reset
-                    row[x][val] = 0;
-                    col[y][val] = 0;
-                    sq[square_index][val] = 0;
-                }
-            }
-            else // It is a blank space
+            if (val == 0) // We can place any number here to test
             {
                 for (int i = 0; i < size; i++)
                 {
@@ -105,16 +134,19 @@ public:
                         row[x][i] = 0;
                         col[y][i] = 0;
                         sq[square_index][i] = 0;
+                        board[x][y] = 0;
                     }
                 }
             }
+            else    countSolutions(x, y + 1);
         }
     }
 
+    // Get the number of solutions.
     int get_ns()
-        {
-            return ns;
-        }
+    {
+        return ns;
+    }
 };
 
 /* -------------------------------------------------------------------------- */

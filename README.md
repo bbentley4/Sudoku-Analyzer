@@ -11,6 +11,3 @@ Compile using the following command:
 `g++ -std=c++11 -stdlib=libc++ solver.cpp -o solver`
 
 # Generator 
-
-
-
