@@ -89,6 +89,7 @@ public:
             return;
         }
         int val = board[x][y];
+        cout << "val: " << val << " x: " << x << " y: " << y << endl;
         // If we reached the end of the rows, we're done--we've found a solution.
         if (x == size)     ns++;
         // If we reached end of columns, go to the next row.
@@ -97,6 +98,7 @@ public:
         {
             int boxsize = sqrt(size);
             int square_index = (x/boxsize) * boxsize + (y/boxsize);
+            cout << "Square Index: " << square_index << endl;
 
             if (val == 0) // We can place any number here to test
             {
@@ -111,7 +113,18 @@ public:
                         col[y][i] = 1;
                         sq[square_index][i] = 1;
                         // Call recursively to check the rest of this line, column, and square
-                        countSolutions(x, y + 1);
+                        if (y + 1 < size)
+                        {
+                            countSolutions(x, y + 1);
+                        }
+                        else if (x + 1 < size)
+                        {
+                            countSolutions(x + 1, 0);
+                        }
+                        else
+                        {
+                            ns++;
+                        }
                         // Reset
                         row[x][i] = 0;
                         col[y][i] = 0;
@@ -120,7 +133,21 @@ public:
                     }
                 }
             }
-            else    countSolutions(x, y + 1);
+            else
+            {
+                if (y + 1 < size)
+                {
+                    countSolutions(x, y + 1);
+                }
+                else if (x + 1 < size)
+                {
+                    countSolutions(x + 1, 0);
+                }
+                else
+                {
+                    ns++;
+                }
+            }
         }
     }
 
