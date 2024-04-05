@@ -89,7 +89,7 @@ public:
             return;
         }
         int val = board[x][y];
-        cout << "val: " << val << " x: " << x << " y: " << y << endl;
+        //cout << "val: " << val << " x: " << x << " y: " << y << endl;
         // If we reached the end of the rows, we're done--we've found a solution.
         if (x == size)     ns++;
         // If we reached end of columns, go to the next row.
@@ -98,7 +98,7 @@ public:
         {
             int boxsize = sqrt(size);
             int square_index = (x/boxsize) * boxsize + (y/boxsize);
-            cout << "Square Index: " << square_index << endl;
+            //cout << "Square Index: " << square_index << endl;
 
             if (val == 0) // We can place any number here to test
             {
