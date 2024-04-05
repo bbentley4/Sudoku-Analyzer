@@ -8,6 +8,7 @@
 #include <vector> 
 #include <string>
 #include <cmath>
+#include <sstream>
 
 using namespace std;
 
@@ -38,38 +39,19 @@ public:
         sq.resize(size, vector<int>(size, 0));
         ns = 0;
 
+        string numString;
+        int num;
+
         // Load board (w/ ints)
         for (int i = 0; i < size; i++) 
         {
-            string row;
-            cin >> row;
-            vector<int> newRow;
-
-            for (int i = 0; i < row.length(); i++)
+            for (int j = 0; j < size; j++)
             {
-                if (row[i] != '-')
-                {
-                    int num = atoi(&row[i]); 
-                    cout << "enter a " << num << endl;
-                    newRow.push_back(num);
-                }
-                else    
-                {
-                    cout << "enter a 0" << endl;
-                    newRow.push_back(0); // Push a 0 where there is a blank space
-                }
+                cin >> numString;
+                num = stoi(numString);
+                board[i][j] = num;
             }
-            board[i] = newRow;
         }        
-
-        // for (int i = 0; i < size; i++)
-        // {
-        //     for (int j = 0; j < size; i++)
-        //     {
-        //         cout << board[i][j] << " ";
-        //     }
-        //     cout << endl;
-        // }
 
         // Load row, col, square values
         for (int x = 0; x < size; x++)
@@ -77,7 +59,6 @@ public:
             for (int y = 0; y < size; y++)
             {
                 int val = board[x][y];
-                //cout << "val: " << val << endl;
                 int boxsize = sqrt(size);
                 int square_index = (x/boxsize) * boxsize + (y/boxsize);
 
@@ -101,6 +82,7 @@ public:
     // Arguments: x, y are the row and column (respectively) being analyzed
     void countSolutions(int x, int y) 
     {
+        // Initializer determined an invalid board
         if (ns < 0)
         {
             ns = 0;

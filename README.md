@@ -11,3 +11,6 @@ Compile using the following command:
 `g++ -std=c++11 -stdlib=libc++ solver.cpp -o solver`
 
 # Generator 
+
+# Acknowledgments
+This project was made possible thanks to the help of GTA Jacob Malloy, who provided valuable insights and feedback throughout development
