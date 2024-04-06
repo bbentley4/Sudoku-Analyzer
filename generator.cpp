@@ -87,6 +87,7 @@ public:
             return;
         }
 
+        outFile << size << endl;
         for (int i = 0; i < size; ++i) 
         {
             for (int j = 0; j < size; ++j) 
@@ -153,6 +154,10 @@ public:
                         else
                         {
                             ns++;
+                            stringstream filenameStream;
+                            filenameStream << baseFileName << "_solution_" << ns << ".txt";
+                            string filename = filenameStream.str();
+                            printBoardToFile(filename);
                         }
                         // Reset
                         row[x][i] = 0;
@@ -175,6 +180,10 @@ public:
                 else
                 {
                     ns++;
+                    stringstream filenameStream;
+                    filenameStream << baseFileName << "_solution_" << ns << ".txt";
+                    string filename = filenameStream.str();
+                    printBoardToFile(filename);
                 }
             }
         }
