@@ -11,6 +11,9 @@ Compile using the following command:
 `g++ -std=c++11 -stdlib=libc++ solver.cpp -o solver`
 
 # Generator 
+Jacob Malloy (GTA) gave me the idea to use my solver code to generate boards.
+1) Feed the solver a blank board.
+2) Take the valid boards it produces then remove squares.
 
 # Acknowledgments
 This project was made possible thanks to the help of GTA Jacob Malloy, who provided valuable insights and feedback throughout development
