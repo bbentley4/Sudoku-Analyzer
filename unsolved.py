@@ -7,7 +7,7 @@ def read_sudoku_board():
     return sudoku_board
 
 def write_sudoku_board(sudoku_board):
-    print('16') #Change to the size of the board 
+    print('4') #Change to the size of the board 
     for row in sudoku_board:
         print(' '.join(map(str, row)))
 

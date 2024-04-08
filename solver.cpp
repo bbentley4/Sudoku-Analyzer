@@ -10,6 +10,7 @@
 #include <cmath>
 #include <sstream>
 #include <fstream>
+#include <climits>
 
 using namespace std;
 
@@ -27,7 +28,7 @@ private:
     // been used in row 2, row[3][4] = 1 means 4 has been used in row 3) 
     vector<vector<int> > row, col, sq;
     // Keeps the count of the number of solutions.
-    int ns; // ns = number (of) solutions
+    unsigned long long ns; // ns = number (of) solutions
 
 public:
     // Constructor
@@ -83,6 +84,12 @@ public:
     // Arguments: x, y are the row and column (respectively) being analyzed
     void countSolutions(int x, int y) 
     {
+        if (ns >= 1149000000)
+        {
+            return;
+        }
+        unsigned long long hundred_million = 100000000;
+        //if (ns % hundred_million == 0) cout << "ns: " << ns << endl;
         // Initializer determined an invalid board
         if (ns < 0)
         {

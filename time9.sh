@@ -40,7 +40,7 @@ for file in "$folder"/*; do
     total_time=$(echo "$total_time + $execution_time" | bc)
     
     # Print accumulated execution time
-    echo "$count: $total_time seconds"
+    echo "$count: $execution_time seconds"
     ((count++))
 done
 

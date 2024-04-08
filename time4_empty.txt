@@ -1,0 +1,5 @@
+1: .002612460 seconds
+2: .002350209 seconds
+3: .002227974 seconds
+4: .002454989 seconds
+5: .002324569 seconds

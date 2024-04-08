@@ -21,7 +21,7 @@ if [ ! -x "$executable" ]; then
     exit 1
 fi
 
-count=1;
+count=23;
 # Iterate over all files in the folder
 for file in "$folder"/*; do
     # Record start time
@@ -40,7 +40,7 @@ for file in "$folder"/*; do
     total_time=$(echo "$total_time + $execution_time" | bc)
     
     # Print accumulated execution time
-    echo "$count: $total_time seconds"
+    echo "$count: $execution_time seconds"
     ((count++))
 done
 
