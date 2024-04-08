@@ -106,11 +106,6 @@ public:
     // Arguments: x, y are the row and column (respectively) being analyzed
     void countSolutions(int x, int y, string baseFileName) 
     {
-        // I don't wanna make more than 1000 boards for my own sanity
-        if (ns >= 10000)
-        {
-            return;
-        }
         // Initializer determined an invalid board
         if (ns < 0)
         {
@@ -213,34 +208,6 @@ bool isPerfectSquare (int num)
     return squareRoot == floor(squareRoot);
 }
 
-// Function to remove numbers from the solved Sudoku board to create an unsolved board
-void removeNumbers(vector<vector<int>> &board, int numToRemove) 
-{
-    for (int i = 0; i < numToRemove; i++) 
-    {
-        int row = rand() % board.size();
-        int col = rand() % board.size();
-        while (board[row][col] == 0) // Skip if already removed
-        { 
-            row = rand() % board.size();
-            col = rand() % board.size();
-        }
-        int temp = board[row][col];
-        board[row][col] = 0; // Remove the number
-
-        // Make a copy of the board to check the number of solutions
-        vector<vector<int>> tempBoard = board;
-
-        // Solve the board to check if it has a unique solution
-        SudokuSolver solver(board.size());
-        solver.countSolutions(0, 0, "temp");
-        if (solver.get_ns() != 1) {
-            board[row][col] = temp; // Restore the removed number
-            i--; // Try removing another number
-        }
-    }
-}
-
 /* -------------------------------------------------------------------------- */
 /*                                    MAIN                                    */
 /* -------------------------------------------------------------------------- */
@@ -257,7 +224,7 @@ int main()
     {
         SudokuSolver solver(size);
         // Now we start solving the board. 
-        solver.countSolutions(0, 0, "25x25"); 
+        solver.countSolutions(0, 0, "9x9"); // You'll wanna change this for other sizes!
         cout << "Number of solutions: " << solver.get_ns() << endl;
     }
     else    return -1;

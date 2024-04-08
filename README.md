@@ -13,7 +13,12 @@ Compile using the following command:
 # Generator 
 Jacob Malloy (GTA) gave me the idea to use my solver code to generate boards.
 1) Feed the solver a blank board.
-2) Take the valid boards it produces then remove squares.
+2) It'll output every valid solution it comes up with
+Note: You'll want to change line 227 depending on the size of your board
+
+# Unsolved
+unsolved.py takes the solved boards and removes cells at random at the ratio set by the user. `unsolved.py <empty-ratio>` I needed valid boards for the solver to solve so I can monitor the time.
+Note: You'll want to change line 10 depending on the size of your board!
 
 # Acknowledgments
 This project was made possible thanks to the help of GTA Jacob Malloy, who provided valuable insights and feedback throughout development

@@ -9,6 +9,7 @@
 #include <string>
 #include <cmath>
 #include <sstream>
+#include <fstream>
 
 using namespace std;
 
@@ -30,7 +31,7 @@ private:
 
 public:
     // Constructor
-    SudokuSolver(int inputSize)
+    SudokuSolver(int inputSize, ifstream &inFile)
     {
         size = inputSize;
         board.resize(size, vector<int>(size, 0));
@@ -47,7 +48,7 @@ public:
         {
             for (int j = 0; j < size; j++)
             {
-                cin >> numString;
+                inFile >> numString;
                 num = stoi(numString);
                 board[i][j] = num;
             }
@@ -172,10 +173,31 @@ bool isPerfectSquare (int num)
 /* -------------------------------------------------------------------------- */
 /*                                    MAIN                                    */
 /* -------------------------------------------------------------------------- */
-int main()
+int main(int argc, char* argv[])
 {
+    if (argc != 2) 
+    {
+        cout << "Usage: " << argv[0] << " <input_file>" << endl;
+        return -1;
+    }
+
+    string fileName = argv[1];
+
+    // Open the input file
+    ifstream inputFile(fileName);
+    if (!inputFile.is_open()) 
+    {
+        cout << "Error opening file: " << fileName << endl;
+        return -1;
+    }
+
     int size;
-    cin >> size;
+    // Read the size of the Sudoku board from the file
+    if (!(inputFile >> size)) 
+    {
+        cout << "Error reading size from file: " << fileName << endl;
+        return -1;
+    }
 
     // Set board limits
     if (size < 4 || size > 100) return -1;
@@ -183,10 +205,10 @@ int main()
     // The board size has to be a perfect square or don't bother. 
     if (isPerfectSquare(size))
     {
-        SudokuSolver solver(size);
+        SudokuSolver solver(size, inputFile);
         // Now we start solving the board. 
         solver.countSolutions(0, 0); 
-        cout << "Number of solutions: " << solver.get_ns() << endl;
+        //cout << "Number of solutions: " << solver.get_ns() << endl;
     }
     else    return -1;
 
