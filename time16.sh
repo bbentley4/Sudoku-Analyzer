@@ -21,11 +21,12 @@ if [ ! -x "$executable" ]; then
     exit 1
 fi
 
-count=23;
+count=60;
 # Iterate over all files in the folder
 for file in "$folder"/*; do
     # Record start time
     start=$(date +%s.%N)
+    echo "start: $start"
     
     # Execute the file with the executable
     "$executable" "$file"
