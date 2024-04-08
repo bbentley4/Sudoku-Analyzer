@@ -107,7 +107,7 @@ public:
     void countSolutions(int x, int y, string baseFileName) 
     {
         // I don't wanna make more than 1000 boards for my own sanity
-        if (ns >= 1000)
+        if (ns >= 3000)
         {
             return;
         }
