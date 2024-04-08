@@ -107,7 +107,7 @@ public:
     void countSolutions(int x, int y, string baseFileName) 
     {
         // I don't wanna make more than 1000 boards for my own sanity
-        if (ns >= 3000)
+        if (ns >= 10000)
         {
             return;
         }
@@ -257,7 +257,7 @@ int main()
     {
         SudokuSolver solver(size);
         // Now we start solving the board. 
-        solver.countSolutions(0, 0, "4x4"); 
+        solver.countSolutions(0, 0, "25x25"); 
         cout << "Number of solutions: " << solver.get_ns() << endl;
     }
     else    return -1;
