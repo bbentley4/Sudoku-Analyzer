@@ -132,7 +132,7 @@ public:
 
             if (val == 0) // We can place any number here to test
             {
-                for (int i = 0; i < size; i++)
+                for (int i = 1; i <= size; i++)
                 {
                     if (row[x][i] == 0 && col[y][i] == 0 && sq[square_index][i] == 0)
                     {
@@ -223,7 +223,7 @@ int main()
     {
         SudokuSolver solver(size);
         // Now we start solving the board. 
-        solver.countSolutions(0, 0, "4x4"); 
+        solver.countSolutions(0, 0, "test"); 
         cout << "Number of solutions: " << solver.get_ns() << endl;
     }
     else    return -1;

@@ -102,7 +102,7 @@ public:
 
             if (val == 0) // We can place any number here to test
             {
-                for (int i = 0; i < size; i++)
+                for (int i = 1; i <= size; i++)
                 {
                     if (row[x][i] == 0 && col[y][i] == 0 && sq[square_index][i] == 0)
                     {
